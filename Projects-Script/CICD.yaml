@@ -3,7 +3,7 @@
   hosts: all
   become: yes
   vars:
-    repository_url: https://github.com/jaiswaladi246/secretsanta-generator.git
+    repository_url: https://github.com/CharanSai8127/secretsanta-generator.git
   vars_files:
     - docker_credentials.yml
   tasks:
@@ -60,7 +60,7 @@
         chdir: /home/ubuntu/secretsanta-generator
         
     - name: Build & Tag Docker Image
-      command: docker build -t adijaiswal/santa:latest .
+      command: docker build -t charansait372/santa:latest .
       args:
         chdir: /home/ubuntu/secretsanta-generator
         
@@ -72,7 +72,7 @@
       command: docker login -u {{ docker_username }} -p {{ docker_password }}
       
     - name: Push Docker Image
-      command: docker push adijaiswal/santa:latest
+      command: docker push charansait372/santa:latest
       
     - name: Deploy To Container
-      command: docker run -d --name secret-santa -p 8080:8080 adijaiswal/santa:latest
+      command: docker run -d --name secret-santa -p 8080:8080 charansait372/santa:latest
